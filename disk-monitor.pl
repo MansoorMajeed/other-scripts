@@ -14,20 +14,29 @@ my $disk_usage_limit = 20;
 
 # disk io usage : 50%
 my $disk_io_limit = 50;
-my $email = "mansoor@digitz.org";
+my $email = "mansoor\@digitz.org";
 
 
 
 
 
 # Function to do logging
-sub log(){
+sub write_log{
 	my $message = shift;
+	print 'logging';
 	my $log_file = 'disk-monitoring.log';
 	open(my $file, '>>', $log_file) or die ("Could not open the log file for writing");
-	
+	($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime(time);
+	$year = $year + 1900;
+	$mon = $mon + 1;
+	$timestamp = "$year-$mon-$mday $hour:$min:$sec ";
+	$string = $timestamp . $message . "\n";
+	print $file $string;
+	close($file);
+
 }
 
+write_log("yeahh");
 # Check health, usage, io usage
 
 # Install the required packages if not installed
