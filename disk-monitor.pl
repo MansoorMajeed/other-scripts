@@ -2,6 +2,10 @@
 
 use Data::Dumper;
 
+# Note : Run this as a cron.
+# or add the whole thing to a while loop and run it forever ( with occasional sleeps )
+# Cron is the better option though.
+
 # Critical values
 # To do :  use a conf file to read these values
 
