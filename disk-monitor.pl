@@ -70,8 +70,19 @@ for $line (@disk_space_usage){
 		my $host = `hostname`;
 		system("echo \"Disk Usage Critical\n==============\nCurrent Usage: $usage\nMounted on: $mount\nPartition: $partition\n\" | mail -s \"Disk usage Alert from $host\" $email");
 		write_log("Disk usage Critical [$usage % used] : Mounted on [$mount]");
+
+		# use it to keep track of the space and send an alert if it recovers
+		system("echo \"Storage:$usage:$partition\" >> disk-stat.log");
 	} else{
 		write_log("Disk usage OK [$usage % used] : Mounted on [$mount]");
+		# check if disk-stat.log contains any previous alert for the partition :$partition
+		$check = `grep -ic $partition disk-stat.log 2>/dev/null`;
+		chomp($check);
+		if ( $check > 0 ){
+			system(
+				"echo \"Disk space recovered on [$host] \nmount point : [$mount] \nPartition: $partition\" | mail -s \"[INFO] Disk space recovered on [$host]\" $email");
+			system("sed -i \"/$partition/d\" disk-stat.log");
+		}
 	}
 }
 
