@@ -95,3 +95,35 @@
 2016-4-20 0:25:54 [OK] Disk IO Utilization OK [3.97]%
 2016-4-20 0:25:54 [OK] Disk health OK
 2016-4-20 0:25:54 ------------------------------------------
+2016-4-20 0:44:20 Disk usage OK [0 % used] : Mounted on [/dev]
+2016-4-20 0:44:20 Disk usage OK [2 % used] : Mounted on [/run]
+2016-4-20 0:44:20 Disk usage OK [37 % used] : Mounted on [/]
+2016-4-20 0:44:20 Disk usage OK [4 % used] : Mounted on [/dev/shm]
+2016-4-20 0:44:20 Disk usage OK [0 % used] : Mounted on [/run/lock]
+2016-4-20 0:44:20 Disk usage OK [0 % used] : Mounted on [/sys/fs/cgroup]
+2016-4-20 0:44:20 Disk usage OK [4 % used] : Mounted on [/home]
+2016-4-20 0:44:20 Disk usage OK [1 % used] : Mounted on [/run/user/133]
+2016-4-20 0:44:20 Disk usage OK [1 % used] : Mounted on [/run/user/1000]
+2016-4-20 0:44:20 Disk usage OK [1 % used] : Mounted on [/run/user/0]
+2016-4-20 0:44:20 ------------------------------------------
+2016-4-20 0:44:20 Checking health and load of disk : [sda]
+2016-4-20 0:44:20 ------------------------------------------
+2016-4-20 0:44:20 [OK] Disk IO Utilization OK [3.84]%
+2016-4-20 0:44:20 [OK] Disk health OK
+2016-4-20 0:44:20 ------------------------------------------
+2016-4-20 0:45:20 Disk usage OK [0 % used] : Mounted on [/dev]
+2016-4-20 0:45:20 Disk usage OK [2 % used] : Mounted on [/run]
+2016-4-20 0:45:20 Disk usage OK [37 % used] : Mounted on [/]
+2016-4-20 0:45:20 Disk usage OK [3 % used] : Mounted on [/dev/shm]
+2016-4-20 0:45:20 Disk usage OK [0 % used] : Mounted on [/run/lock]
+2016-4-20 0:45:20 Disk usage OK [0 % used] : Mounted on [/sys/fs/cgroup]
+2016-4-20 0:45:20 Disk usage OK [4 % used] : Mounted on [/home]
+2016-4-20 0:45:20 Disk usage OK [1 % used] : Mounted on [/run/user/133]
+2016-4-20 0:45:20 Disk usage OK [1 % used] : Mounted on [/run/user/1000]
+2016-4-20 0:45:20 Disk usage OK [1 % used] : Mounted on [/run/user/0]
+2016-4-20 0:45:20 ------------------------------------------
+2016-4-20 0:45:20 Checking health and load of disk : [sda]
+2016-4-20 0:45:20 ------------------------------------------
+2016-4-20 0:45:20 [OK] Disk IO Utilization OK [3.83]%
+2016-4-20 0:45:20 [OK] Disk health OK
+2016-4-20 0:45:20 ------------------------------------------
