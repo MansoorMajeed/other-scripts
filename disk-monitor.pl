@@ -1,10 +1,6 @@
 #!/usr/bin/perl
 
-
-use warnings;
 use Data::Dumper;
-
-
 
 # Critical values
 # To do :  use a conf file to read these values
@@ -13,17 +9,13 @@ use Data::Dumper;
 my $disk_usage_limit = 80;
 
 # disk io usage : 50%
-my $disk_io_limit = 3;
+my $disk_io_limit = 50;
 my $email = "mansoor\@digitz.org";
 
 
-
-
-
-# Function to do logging
+# Logging
 sub write_log{
 	my $message = shift;
-	
 	my $log_file = 'disk-monitoring.log';
 	open(my $file, '>>', $log_file) or die ("Could not open the log file for writing");
 	($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime(time);
@@ -33,10 +25,8 @@ sub write_log{
 	$string = $timestamp . $message . "\n";
 	print $file $string;
 	close($file);
-
 }
 
-write_log("yeahh");
 # Check health, usage, io usage
 
 # Install the required packages if not installed
@@ -57,7 +47,6 @@ if ($smartctl_check eq ''){
 
 
 # Get all the attached disks
-
 my $disks = `/bin/lsblk -l | grep disk | awk '{ print \$1 }'`;
 my @disks = split('\n', $disks);
 chomp for(@disks);
@@ -71,11 +60,7 @@ for $line (@disk_space_usage){
 	my $partition = $parts[0];
 	my $usage = $parts[1];
 	my $mount = $parts[2];
-	# my $usage =~ s/%//g;  # It doesn't work. Need to check why
-	# Gotcha!! that "my" would cause issues during substitution
 	$usage =~ s/%//g;
-	# my ($usage) =  ($usage =~ /(\d+)%/);
-	# print "$partition==$usage==$mount\n";
 	if ($usage > $disk_usage_limit){
 		print "Sending email";
 		my $host = `hostname`;
@@ -84,28 +69,20 @@ for $line (@disk_space_usage){
 	} else{
 		write_log("Disk usage OK [$usage % used] : Mounted on [$mount]");
 	}
-
 }
 
 # Loop through the disks and check the load on each
 # also check the health.
 for $disk (@disks){
-	# print "$disk";
 	write_log("------------------------------------------");
 	write_log("Checking health and load of disk : [$disk]");
 	write_log("------------------------------------------");
 	my $disk_io_usage = `/usr/bin/iostat -dhx /dev/$disk | awk '\$13 ~ /^[0-9,\.]+\$/ { print \$13 }'`;
 	chomp ($disk_io_usage);
 	
-
-	# Disk space usage
-	# my $disk_space_usage;
-
-
 	# Disk health
 	my $disk_health = `smartctl -H /dev/$disk | grep overall-health | awk -F: '{ print \$2 }'`;
-	# print $disk_health;		
-	# my $(disk_health) = ($d_health =~ s/^\s+// );
+
 	my $notify_flag;
 	if ($disk_io_usage > $disk_io_limit){
 		write_log("[WARN] Disk IO Critical. % Utilization :[$disk_io_usage]");
@@ -116,11 +93,8 @@ for $disk (@disks){
 
 	$disk_health =~ s/^\s+//;
 	if ( $disk_health =~ /PASSED/){
-		# Log
 		write_log("[OK] Disk health OK");
-		
-	} else {
-		# Log and send an alert
+	} else { 											# Mayday mayday :D !!!
 		write_log("[FATAL] Disk Health Not OK");
 		$notify_flag = 1;
 		$emergency_flag = 1;
@@ -129,11 +103,17 @@ for $disk (@disks){
 	if ($notify_flag){
 		$host = `hostname`;
 		write_log("Sending Alerts to the Team");
-		if($emergency_flag){
-
-			system("echo \"Disk Failure. Disk [$disk] on [$hostname] failed health test\" | mail -s \"[FATAL] Disk [$disk] Health Fatal on host [$hostname] \" $email");
+		if($emergency_flag){ # If the disk is in bad condition, there is no point in sending an alert for high IO usage
+			system(
+				"echo \"Disk Failure. Disk [$disk] on [$hostname] failed health test\" | 
+				 mail -s \"[FATAL] Disk [$disk] Health Fatal on host [$hostname] \" $email"
+				);
+		} else {  
+			system(
+				"echo \"Disk IO usage Critical on host [$hostname]\n--------------\n%Utilization: $disk_io_usage\n\" | 
+				 mail -s \"[WARN] Disk IO usage critical on [$host]\" $email"
+				 );
 		}
-		system("echo \"Disk IO usage Critical on host [$hostname]\n--------------\n%Utilization: $disk_io_usage\n\" | mail -s \"[WARN] Disk IO usage critical on [$host]\" $email");
 	}
 	write_log("------------------------------------------");
 }
