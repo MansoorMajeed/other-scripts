@@ -1,0 +1,33 @@
+2016-4-19 23:38:32 Disk usage OK [0 % used] : Mounted on [/dev]
+2016-4-19 23:38:32 Disk usage OK [2 % used] : Mounted on [/run]
+2016-4-19 23:38:32 Disk usage OK [37 % used] : Mounted on [/]
+2016-4-19 23:38:32 Disk usage OK [2 % used] : Mounted on [/dev/shm]
+2016-4-19 23:38:32 Disk usage OK [0 % used] : Mounted on [/run/lock]
+2016-4-19 23:38:32 Disk usage OK [0 % used] : Mounted on [/sys/fs/cgroup]
+2016-4-19 23:38:32 Disk usage OK [4 % used] : Mounted on [/home]
+2016-4-19 23:38:32 Disk usage OK [1 % used] : Mounted on [/run/user/133]
+2016-4-19 23:38:32 Disk usage OK [1 % used] : Mounted on [/run/user/1000]
+2016-4-19 23:38:32 Disk usage OK [1 % used] : Mounted on [/run/user/0]
+2016-4-19 23:38:32 ------------------------------------------
+2016-4-19 23:38:32 Checking health and load of disk : [sda]
+2016-4-19 23:38:32 ------------------------------------------
+2016-4-19 23:38:33 [OK] Disk Utilization OK [4.57]
+2016-4-19 23:38:33 [OK] Disk health OK
+2016-4-19 23:38:33 ------------------------------------------
+2016-4-19 23:39:26 Disk usage OK [0 % used] : Mounted on [/dev]
+2016-4-19 23:39:26 Disk usage OK [2 % used] : Mounted on [/run]
+2016-4-19 23:39:26 Disk usage OK [37 % used] : Mounted on [/]
+2016-4-19 23:39:26 Disk usage OK [2 % used] : Mounted on [/dev/shm]
+2016-4-19 23:39:26 Disk usage OK [0 % used] : Mounted on [/run/lock]
+2016-4-19 23:39:26 Disk usage OK [0 % used] : Mounted on [/sys/fs/cgroup]
+2016-4-19 23:39:26 Disk usage OK [4 % used] : Mounted on [/home]
+2016-4-19 23:39:26 Disk usage OK [1 % used] : Mounted on [/run/user/133]
+2016-4-19 23:39:26 Disk usage OK [1 % used] : Mounted on [/run/user/1000]
+2016-4-19 23:39:26 Disk usage OK [1 % used] : Mounted on [/run/user/0]
+2016-4-19 23:39:26 ------------------------------------------
+2016-4-19 23:39:26 Checking health and load of disk : [sda]
+2016-4-19 23:39:26 ------------------------------------------
+2016-4-19 23:39:26 [WARN] Disk IO Critical. % Utilization :[4.56]
+2016-4-19 23:39:26 [OK] Disk health OK
+2016-4-19 23:39:26 Sending Alerts to the Team
+2016-4-19 23:39:27 ------------------------------------------
